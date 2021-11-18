@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Chart from './components/Chart';
 
+
 class App extends Component {
   constructor(){
     super();
@@ -45,12 +46,13 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to React</h2>
+          <h2>Welcome to Grid-Scout!</h2>
         </div>
-        <Chart chartData={this.state.chartData} location="Massachusetts" legendPosition="bottom"/>
+        <Chart chartData={this.state.chartData} legendPosition="bottom"/>
       </div>
     );
   }
 }
+
 
 export default App;
