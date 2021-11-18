@@ -11,7 +11,6 @@ class App extends Component {
   }
 
   componentWillMount(){
-   // this.getchartData(); // this should be this.getChartData();
     this.getChartData();
   }
 
@@ -19,18 +18,14 @@ class App extends Component {
     // Ajax calls here
     this.setState({
       chartData:{
-        labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+        label: "",
+        labels: [0.00, 1.00, 2.00, 3.00, 4.00, 5.00, 6.00, 7.00, 8.00, 9.00, 10.00, 11.00,
+          12.00, 13.00, 14.00, 15.00, 16.00, 17.00, 18.00, 19.00, 20.00, 21.00, 22.00, 23.00],
         datasets:[
           {
-            label:'Population',
+            label:'Total Power onto phase',
             data:[
-              617594,
-              181045,
-              153060,
-              106519,
-              105162,
-              95072
-            ],
+              ],
             backgroundColor:[
               'rgba(255, 99, 132, 0.6)',
               'rgba(54, 162, 235, 0.6)',
