@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import logo from './Grid_Scout_Logo.png.png';
 import Chart from './components/Chart';
 
 
@@ -47,6 +48,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Welcome to Grid-Scout!</h2>
+          <img src={logo} className="App-logo" alt="logo" />
         </div>
         <Chart chartData={this.state.chartData} legendPosition="bottom"/>
       </div>
