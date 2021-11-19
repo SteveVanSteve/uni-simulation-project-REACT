@@ -1,42 +1,61 @@
-// import React, {Component} from 'react';
-// import {Line} from 'react-chartjs-2';
+import React, {useState, useEffect} from 'react';
+import {Line} from 'react-chartjs-2';
 
-// class Chart extends Component{
-//   constructor(props){
-//     super(props);
-//     this.state = {
-//       chartData:props.chartData
-//     }
-//   }
+const Chart = () => {
+  const [chartData, setChartData] = useState({})
 
-//   static defaultProps = {
-//     displayTitle:true,
-//     displayLegend: true,
-//     legendPosition:'right'
-//   }
+  const chart = () => {
+    setChartData({
+      labels: [0.00, 1.00, 2.00, 3.00, 4.00, 5.00, 6.00, 7.00, 8.00, 9.00, 10.00, 11.00,
+        12.00, 13.00, 14.00, 15.00, 16.00, 17.00, 18.00, 19.00, 20.00, 21.00, 22.00, 23.00],
+      datasets: [
+        {
+          label: 'Total Power from house loaded onto Low Voltage Grid',
+          data: [],
+          fill: true,
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.6)'
+          ],
+          borderWidth: 4
+        }
+      ]
+    })
+  }
+  useEffect(() => {
+    chart()
+  }, [])
+  return(
+    <div className="App">
+      <h1>Chart</h1>
+      <div>
+        <Line data={chartData} coptions={{
+          responsive: true,
+          title: {text: 'Simulation Results', display: true},
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  autoSkip: true,
+                  maxTicksLimit: 10,
+                  beginAtZero: true
+                },
+                gridLines: {
+                  display: true
+                }
+              }
+            ],
+            xAxes: [
+              {
+                gridLines: {
+                  display: true
+                }
+              }
+            ]
+          }
+        }}/>
+      </div>
+    </div>
+  )
+}
 
-//   render(){
-//     return (
-//       <div className="chart">
-        
-
-//         <Line
-//           data={this.state.chartData}
-//           options={{
-//             title:{
-//               display:this.props.displayTitle,
-//               fontSize:25
-//             },
-//             legend:{
-//               display:this.props.displayLegend,
-//               position:this.props.legendPosition
-//             }
-//           }}
-//         />
-
-//       </div>
-//     )
-//   }
-// }
-
-// export default Chart;
+export default Chart
