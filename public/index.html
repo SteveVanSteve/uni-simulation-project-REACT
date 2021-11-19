@@ -4,65 +4,72 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <title>Grid-Scout Simulation App</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
-  <style>
-    * {
-      box-sizing: border-box;
-    }  
-    /* Create two equal columns that floats next to each other */
-    .column {
-      float: left;
-      width: 50%;
-      padding: 10px;
-      height: 300px; /* Should be removed. Only for demonstration */
-    }
-    
-    /* Clear floats after the columns */
-    .row:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-    </style>
-    </head>
-    <body>
-    
-    <h2>Steve's Uni Project</h2>
-    
-    <div class="row">
-      <div class="column" style="background-color:#ffff;">
-        <h2>Column 1</h2>
-        <p>Simulation Configuration</p>
+
+<!-- THIS IS WHERE I NEED TO USE COLUMNS TO SPLIT SIMULATION CONFIGURATION ON ONE SIDE AND GRAPH ON THE OTHER-->
+
+<style>
+  * {
+    box-sizing: border-box;
+  }  
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  </style>
+
+<body>
+  <h2>Simulation Configuration</h2>
+  <div class="row">
+    <div class="column" style="background-color:#ffff;">
+      <h2>Column 1</h2>
+      <p>Simulation Configuration</p>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Select the BackgroundSet:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="BackgroundSetId 1">No Electric Heating</option>
+            <option value="BackgroundSetId 2">Additional Electric Heating</option>
+            <option value="BackgroundSetId 3">Primary Electric Heating</option>
+          </select>
+        </label>
+        <input type="submit" value="Select" />
+        <p></p>
+        <!-- Text box for number of cars -->
         <form>
-            <label>
-              Add number of Electric Vehicles:
-              <input type="text" value="" />
-            </label>
-            <input type="submit" value="Submit" />
-            <label>
-              Select BackgroundSet:
-              <input type="text" value="" />
-            </label>
-            <input type="submit" value="Submit" />
-            Run simulation ->
-            <input type="submit" value="Run" />
-          </form>
-      </div>
-      <div class="column" style="background-color:#ffff;">
-        <h2>Column 2</h2>
-        <p>The graph should in here</p>
-      </div>
+          <label>Enter the number of Electric Vehicles:
+            <input type="text" />
+          </label>
+          <input type="submit" value="Add"/>
+        </form>
+        <p></p>
+        <!-- 'Run Simulation Configuration' button -->
+        <form>
+          <label>Run Simulation Configuration</label>
+          <input value="Run" type="submit" />
+        </form>
+      </form>
     </div>
-    
-    </body>
-    </html>
-      
+
+    <div class="column" style="background-color:#ffff;">
+      <h2>Column 2</h2>
+      <p>A graph should that shows the results of the simulation configuration will be displayed here</p>
+    </div>
+  </div>
+  
+  </body>
+  </html>
+  

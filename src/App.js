@@ -26,7 +26,7 @@ class App extends Component {
         datasets:[
           {
             label:'Total Power onto phase',
-            data:[
+            data:[  
               ],
             backgroundColor:[
               'rgba(255, 99, 132, 0.6)',
