@@ -1,5 +1,6 @@
 import logo from './Grid_Scout_Logo.png.png';
 import './App.css';
+import FetchAPI from './components/FetchAPI';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
           Welcome to Grid-Scout!
         </p>
         </header>
+        <FetchAPI />
     </div>
   );
 }
