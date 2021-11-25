@@ -29,10 +29,25 @@ class Form extends React.Component {
               <option value="Primary Electric Heating">Primary Electric Heating</option>
             </select>
           </label>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Select" />
+          <div>
+          <p></p>
+          {/* Text box for number of Elecrtic Vehicles */}
+          <label>Enter the number of Electric Vehicles:
+            <input type="text" />
+          </label>
+          <input type="submit" value="Enter"/>
+          </div>
+          <div>
+          <p></p>
+              {/* 'Run Simulation Configuration' button */}
+              <label>Run Simulation Configuration</label>
+              <input value="Run Simulation" type="submit" />
+          </div>
         </form>
       );
     }
   }
 
 export default Form;
+
