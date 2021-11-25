@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 
-function FetchAPI() {
-
-    const [data, setData] = useState([])
+function ResultsFetchAPI() {
+    const [data, setData] = useState()
 
     const apiGet = () => {
         fetch("http://127.0.0.1:8000/simulationresult/")
@@ -12,17 +11,16 @@ function FetchAPI() {
             setData(json);
         });
     };
-
     return (
         <div>
-            Simulation API <br />
+            Simulation Results API <br />
 
-            <button onClick={apiGet}>Fetch API</button>
+            <button onClick={apiGet}>Fetch Simulation Results API</button>
             <br />
             {JSON.stringify(data, null, 2)}
         </div>
     );
 }
 
-export default FetchAPI;
+export default ResultsFetchAPI;
 
