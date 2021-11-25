@@ -9,21 +9,18 @@
     <div id="root"></div>
   </body>
 
-<!-- THIS IS WHERE I NEED TO USE COLUMNS TO SPLIT SIMULATION CONFIGURATION ON ONE SIDE AND GRAPH ON THE OTHER-->
-
 <style>
   * {
     box-sizing: border-box;
   }  
-  /* Create two equal columns that floats next to each other */
   .column {
     float: left;
     width: 50%;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+    height: 300px; 
   }
   
-  /* Clear floats after the columns */
+  
   .row:after {
     content: "";
     display: table;
@@ -48,12 +45,12 @@
         </label>
         <input type="submit" value="Select" />
         <p></p>
-        <!-- Text box for number of cars -->
+        <!-- Text box for number of Elecrtic Vehicles -->
         <form>
           <label>Enter the number of Electric Vehicles:
             <input type="text" />
           </label>
-          <input type="submit" value="Add"/>
+          <input type="submit" value="Enter"/>
         </form>
         <p></p>
         <!-- 'Run Simulation Configuration' button -->
@@ -65,17 +62,31 @@
     </div>
 
     <div class="column" style="background-color:#ffff;">
-      <h2>Simulation Results</h2>
-      <p>A graph should be here that shows the results of the simulation configuration. It will update/refresh with each configuration.</p>
+      <h2>Simulation Results Graph</h2>  
 
-          <!-- THIS IS WHERE THE GRAPH CODE NEEDS TO APPEAR
-          First it needs to be blank before configuration results are put in
-          Second it needs to show those results - this will involve linking up with a POST and GET request
-          from API
-          -->
+      <script> src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"</script>
+
+    <body>
+      <canvas id="chart" width="400" height="400"></canvas>
+      <script>
+        // Data from http://127.0.0.1:8000/simulationresult/
+
+        getData();
+
+        async function getData() {
+          const response = await fetch('SimulationResult - test.csv');
+          const data = await response.json();
+          console.log(data);
+
+          const rows = data.split('\r\n');
+          console.log(rows);
+        }
+
+      </script>
 
 
-          
+
+    </body>
     </div>
   </div>
   
