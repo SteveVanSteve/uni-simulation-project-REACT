@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 
-function ConfigFetchAPI() {
+// Need to POST the simulation config
+
+function ConfigAPI() {
     const [data, setData] = useState()
 
     const apiGet = () => {
@@ -22,4 +24,4 @@ return (
     );
 }
 
-export default ConfigFetchAPI;
+export default ConfigAPI;

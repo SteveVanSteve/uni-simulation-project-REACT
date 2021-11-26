@@ -7,66 +7,18 @@
   </head>
   <body>
     <div id="root"></div>
-  </body>
 
-<style>
-  * {
-    box-sizing: border-box;
-  }  
-  .column {
-    float: left;
-    width: 50%;
-    padding: 10px;
-    height: 300px; 
-  }
-  
-  
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  </style>
-
-<body>
-  
-  <div class="row">
-    <div class="column" style="background-color:#ffff;">
-      <h2>Simulation Configuration</h2>
-      <form onSubmit={this.handleSubmit}>
-
-      </form>
+    <div class="container">
+      <h1>Simulation Results Chart</h1>
+      <div>
+        <canvas id="canvas"></canvas>
+      </div>
     </div>
 
-    <div class="column" style="background-color:#ffff;">
-      <h2>Simulation Results Graph</h2>  
-
-      <script> src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"</script>
-
-    <body>
-      <canvas id="chart" width="400" height="400"></canvas>
-      <script>
-        // Data from http://127.0.0.1:8000/simulationresult/
-
-        getData();
-
-        async function getData() {
-          const response = await fetch('SimulationResult - test.csv');
-          const data = await response.json();
-          console.log(data);
-
-          const rows = data.split('\r\n');
-          console.log(rows);
-        }
-
-      </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+    <script type="text/javascript" src="components/SimulationChart.js"></script>
 
 
 
-    </body>
-    </div>
-  </div>
-  
   </body>
-  </html>
-  
+

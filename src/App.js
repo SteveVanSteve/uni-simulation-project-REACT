@@ -1,9 +1,10 @@
-//ORIGINAL CODE FOR APPjs - 25/11/2021 
+import React from 'react';
 import logo from './Grid_Scout_Logo.png.png';
 import './App.css';
-import ResultsFetchAPI from './components/ResultsFetchAPI';
-import ConfigFetchAPI from './components/ConfigFetchAPI';
+import ResultsAPI from './components/ResultsAPI';
+import ConfigAPI from './components/ConfigAPI';
 import Form from './components/Form';
+import SimulationChart from './components/SimulationChart';
 
 function App() {
    return (
@@ -15,11 +16,15 @@ function App() {
          </p>
          </header>
          <p>
-           <ResultsFetchAPI />
+           <ResultsAPI />
          </p>
-           <ConfigFetchAPI />
+           <ConfigAPI />
          <p>
            <Form />
+         </p>
+         <p>
+         <SimulationChart />
+         {/* Encountering an error = "TypeError: Cannot read properties of undefined (reading 'map')" */}
          </p>
      </div>
    );

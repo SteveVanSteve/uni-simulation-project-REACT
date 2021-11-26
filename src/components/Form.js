@@ -53,12 +53,12 @@ class Form extends Component {
 
         <p></p>
           <div>
-             <label>Run Simulation Configuration</label>
+             <label>Run Simulation Configuration </label>
               <input value="Run Simulation" type="submit" />
           </div>
           <p></p>
           <div>
-             <label>Get Simulation Results</label>
+             <label>Get Simulation Results </label>
              <input type="submit" value="Get"/>
           </div>
 

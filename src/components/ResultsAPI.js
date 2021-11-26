@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 
-function ResultsFetchAPI() {
+// Need to GET the Simulation Results
+
+function ResultsAPI() {
     const [data, setData] = useState()
 
     const apiGet = () => {
@@ -22,5 +24,4 @@ function ResultsFetchAPI() {
     );
 }
 
-export default ResultsFetchAPI;
-
+export default ResultsAPI;
