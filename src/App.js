@@ -24,7 +24,6 @@ function App() {
          </p>
          <p>
          <SimulationChart />
-         {/* Encountering an error = "TypeError: Cannot read properties of undefined (reading 'map')" */}
          </p>
      </div>
    );
