@@ -33,31 +33,8 @@
   <div class="row">
     <div class="column" style="background-color:#ffff;">
       <h2>Simulation Configuration</h2>
-      <p>The options in the form below allows a simulation to be configured.</p>
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Select the BackgroundSet:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="BackgroundSetId 1">No Electric Heating</option>
-            <option value="BackgroundSetId 2">Additional Electric Heating</option>
-            <option value="BackgroundSetId 3">Primary Electric Heating</option>
-          </select>
-        </label>
-        <input type="submit" value="Select" />
-        <p></p>
-        <!-- Text box for number of Elecrtic Vehicles -->
-        <form>
-          <label>Enter the number of Electric Vehicles:
-            <input type="text" />
-          </label>
-          <input type="submit" value="Enter"/>
-        </form>
-        <p></p>
-        <!-- 'Run Simulation Configuration' button -->
-        <form>
-          <label>Run Simulation Configuration</label>
-          <input value="Run Simulation" type="submit" />
-        </form>
+
       </form>
     </div>
 
