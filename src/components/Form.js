@@ -1,50 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: []};
+class Form extends Component {
+	constructor(props) {
+		super(props)
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+		this.state = {
+			backgroundSet: 'electric heating',
+      cars: ''
+		}
+	}
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
+	handleBackgroundSetChange = event => {
+		this.setState({
+			backgroundSet: event.target.value
+		})
+	}
 
-  handleSubmit(event) {
-    alert('The backgroundSet selected is: ' + this.state.value);
-    event.preventDefault();
-  }
+	handleNumberOfCarsChange = event => {
+		this.setState({
+			cars: event.target.value
+		})
+	}
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Select the Background Setting:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="No Electric Heating">No Electric Heating</option>
-            <option value="Additional Electric Heating">Additional Electric Heating</option>
-            <option value="Primary Electric Heating">Primary Electric Heating</option>
-          </select>
-        </label>
-        <input type="submit" value="Select" />
+	handleSubmit = event => {
+		alert(`${this.state.backgroundSet} ${this.state.cars}`)
+		event.preventDefault()
+	}
+
+	render() {
+		const { backgroundSet, cars } = this.state
+		return (
+			<form onSubmit={this.handleSubmit}>
+				<div>
+					<label>Select the BackgroundSet: </label>
+					<select value={backgroundSet} onChange={this.handleBackgroundSetChange}>
+						<option value="No Electric Heating">No Electric Heating</option>
+						<option value="Additional Electric Heating">Additional Electric Heating</option>
+						<option value="Primary Electric Heating">Primary Electric Heating</option>
+					</select>
+				</div>
+        <br/>
         <div>
+					<label>Enter the Number of Cars: </label>
+					<input
+						type="text"
+						value={cars}
+						onChange={this.handleNumberOfCarsChange}
+					/>
+				</div>
         <p></p>
-        <label>Enter the number of Electric Cars:
-          <input type="text" />
-        </label>
-        <input type="submit" value="Enter"/>
-        </div>
-          <div>
-          <p></p>
-          <label>
-            Add this Configuration
-          </label>
-          <input type="submit" value="Add"/>
-          </div>
-          <p></p>
+				<button type="submit">Submit Configuration</button>
+
+        <p></p>
           <div>
              <label>Run Simulation Configuration</label>
               <input value="Run Simulation" type="submit" />
@@ -54,10 +61,10 @@ class Form extends React.Component {
              <label>Get Simulation Results</label>
              <input type="submit" value="Get"/>
           </div>
-      </form>
-    );
-  }
+
+			</form>
+		)
+	}
 }
 
 export default Form;
-
