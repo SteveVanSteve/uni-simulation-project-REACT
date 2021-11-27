@@ -1,70 +1,69 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
-class Form extends Component {
-	constructor(props) {
-		super(props)
+function Form({getSimulationConfig, getSimulationResult}) {
+	const [ backgroundSet, setBackgroundSet ] = useState()
+	const [ cars, setCars ] = useState()
+	const [ response, setResponse] = useState()
 
-		this.state = {
-			backgroundSet: 'electric heating',
-      cars: ''
-		}
+	const handleBackgroundSetChange = (event) => {
+		setBackgroundSet(event.target.value);
 	}
 
-	handleBackgroundSetChange = event => {
-		this.setState({
-			backgroundSet: event.target.value
-		})
+	const handleNumberOfCarsChange = (event) => {
+		setCars(event.target.value);
 	}
 
-	handleNumberOfCarsChange = event => {
-		this.setState({
-			cars: event.target.value
-		})
-	}
-
-	handleSubmit = event => {
-		alert(`${this.state.backgroundSet} ${this.state.cars}`)
+	const handleSubmit = (event) => {
+		alert(`${backgroundSet} ${cars}`)
+		const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ houseId: 55, backgroundSetId: 1, numberOfCars: cars})
+		};
+		fetch('http://127.0.0.1:8000/simulationconfig/', requestOptions)
+			.then(response => response.json())
+			.then(data => setResponse(data));
 		event.preventDefault()
+		getSimulationConfig()
 	}
 
-	render() {
-		const { backgroundSet, cars } = this.state
+	const handlRunSimulation = (event) =>{
+		alert('run')
+		getSimulationResult()
+	}
+
 		return (
-			<form onSubmit={this.handleSubmit}>
+			<><form onSubmit={handleSubmit}>
 				<div>
 					<label>Select the BackgroundSet: </label>
-					<select value={backgroundSet} onChange={this.handleBackgroundSetChange}>
+					<select value={backgroundSet} onChange={handleBackgroundSetChange}>
 						<option value="No Electric Heating">No Electric Heating</option>
 						<option value="Additional Electric Heating">Additional Electric Heating</option>
 						<option value="Primary Electric Heating">Primary Electric Heating</option>
 					</select>
 				</div>
-        <br/>
-        <div>
+				<br />
+				<div>
 					<label>Enter the Number of Cars: </label>
 					<input
 						type="text"
 						value={cars}
-						onChange={this.handleNumberOfCarsChange}
-					/>
+						onChange={handleNumberOfCarsChange} />
 				</div>
-        <p></p>
+				<p></p>
 				<button type="submit">Submit Configuration</button>
 
-        <p></p>
-          <div>
-             <label>Run Simulation Configuration </label>
-              <input value="Run Simulation" type="submit" />
-          </div>
-          <p></p>
-          <div>
-             <label>Get Simulation Results </label>
-             <input type="submit" value="Get"/>
-          </div>
+				<p></p>
 
 			</form>
+
+			<div onClick={handlRunSimulation}>
+				<label>Run Simulation Configuration </label>
+				<input value="Run Simulation" type="submit" />
+			</div>
+			{JSON.stringify(response, null, 2)}
+			</>
 		)
-	}
 }
 
 export default Form;
