@@ -29,13 +29,13 @@ function App() {
 			});
   }
 
-  const getSimulationResult =() =>{
-    setLoading(true);
-    const requestOptions ={
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify(simulationConfig.results)
-    };
+  const getSimulationResult = () => {
+		setLoading(true);
+    const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(simulationConfig.results)
+		};
 
 		const apiUrl = `http://127.0.0.1:8000/simulationresult/`;
 		fetch(apiUrl, requestOptions)
@@ -51,26 +51,23 @@ function App() {
       });;
   }
 
-  }
-
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to Grid-Scout!
-        </p>
-        </header>
-        <p>
-          <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} />
-        </p>
-        {JSON.stringify(simulationConfig, null, 2)}
-        <p>
-        <SimulationChart simulationResult={simulationResult} />
-        </p>
-    </div>
-  );
-}
+   return (
+     <div className="App">
+       <header className="App-header">
+         <img src={logo} className="App-logo" alt="logo" />
+         <p>
+           Welcome to Grid-Scout!
+         </p>
+         </header>
+         <p>
+           <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} />
+         </p>
+         {JSON.stringify(simulationConfig, null, 2)}
+         <p>
+         <SimulationChart simulationResult={simulationResult} />
+         </p>
+     </div>
+   );
+ }
 
 export default App;
