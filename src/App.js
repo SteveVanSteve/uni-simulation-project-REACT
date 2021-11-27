@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './Grid_Scout_Logo.png.png';
 import './App.css';
-import ResultsAPI from './components/ResultsAPI';
-import ConfigAPI from './components/ConfigAPI';
 import Form from './components/Form';
 import SimulationChart from './components/SimulationChart';
+
 
 function App() {
    return (
