@@ -30,7 +30,7 @@ function SimulationChart({simulationResult}) {
       label: 'Total Power from house loaded onto Low Voltage Grid',
       data: getData(),
       borderColor: 'rgb(75, 192, 192)',
-      tension: 0.4,
+      tension: 0.5,
       options: {
         scales: {
           yAxes: {

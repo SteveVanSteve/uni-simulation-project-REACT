@@ -51,7 +51,7 @@ function Form({getSimulationConfig, getSimulationResult}) {
 						onChange={handleNumberOfCarsChange} />
 				</div>
 				<p></p>
-				<button type="submit">Submit Configuration</button>
+				<button type="submit">Add Configuration</button>
 
 				<p></p>
 
