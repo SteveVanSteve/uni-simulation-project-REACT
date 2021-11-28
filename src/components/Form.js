@@ -1,36 +1,37 @@
 import React, { Component, useState } from 'react';
 
 function Form({getSimulationConfig, getSimulationResult}) {
+	const [ backgroundSets, setBackgroundSets ] = useState()
+	const [ loadedBackgroundSets, setLoadedBackgroundSets] = useState(false)
 	const [ backgroundSet, setBackgroundSet ] = useState()
-	const [ cars, setCars ] = useState()
+	const [ cars, setCars ] = usetState()
+	const [ houseId, setHouseId ] = usetState()
 	const [ response, setResponse] = useState()
 
-	const handleBackgroundSetChange = (event) => {
-		setBackgroundSet(event.target.value);
-	}
+	useEffect(() => {
 
-	const handleNumberOfCarsChange = (event) => {
-		setCars(event.target.value);
-	}
+//	const handleNumberOfCarsChange = (event) => {
+	// 	setCars(event.target.value);
+	// }
 
-	const handleSubmit = (event) => {
-		alert(`${backgroundSet} ${cars}`)
-		const requestOptions = {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ houseId: 55, backgroundSetId: 1, numberOfCars: cars})
-		};
-		fetch('http://127.0.0.1:8000/simulationconfig/', requestOptions)
-			.then(response => response.json())
-			.then(data => setResponse(data));
-		event.preventDefault()
-		getSimulationConfig()
-	}
+//	const handleSubmit = (event) => {
+	// 	alert(`${backgroundSet} ${cars}`)
+	// 	const requestOptions = {
+	// 		method: 'POST',
+	// 		headers: { 'Content-Type': 'application/json' },
+	// 		body: JSON.stringify({ houseId: 55, backgroundSetId: 1, numberOfCars: cars})
+	// 	};
+	// 	fetch('http://127.0.0.1:8000/simulationconfig/', requestOptions)
+	// 		.then(response => response.json())
+	// 		.then(data => setResponse(data));
+	// 	event.preventDefault()
+	// 	getSimulationConfig()
+	// }
 
-	const handlRunSimulation = (event) =>{
-		alert('run')
-		getSimulationResult()
-	}
+	// const handlRunSimulation = (event) =>{
+	// 	alert('run')
+	// 	getSimulationResult()
+	// }
 
 		return (
 			<><form onSubmit={handleSubmit}>
