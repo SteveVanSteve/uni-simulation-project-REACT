@@ -1,20 +1,21 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 
 function Form({getSimulationConfig, getSimulationResult}) {
 	const [ backgroundSets, setBackgroundSets ] = useState()
-	const [ loadedBackgroundSets, setLoadedBackgroundSets] = useState(false)
+	const [ loadedBackgroundSets, setLoadedBacgkroundSets ] = useState(false)
 	const [ backgroundSet, setBackgroundSet ] = useState()
-	const [ cars, setCars ] = usetState()
-	const [ houseId, setHouseId ] = usetState()
+	const [ cars, setCars ] = useState()
+	const [ houseId, setHouseId ] = useState()
 	const [ response, setResponse] = useState()
 
-	useEffect(() => {useEffect(() => {
+	useEffect(() => {
 		if (!loadedBackgroundSets){
 			fetch('http://127.0.0.1:8000/backgroundsets/')
+			.then(response => response.json())
 			.then(data => {
 				setBackgroundSets(data.results)
-				setLoadedBackgroundSets(true)
-				setBackgroundSet(data.result[0].backgroundSetId)
+				setLoadedBacgkroundSets(true)
+				setBackgroundSet(data.results[0].backgroundSetId)
 			});
 		}
 	});
@@ -38,48 +39,49 @@ function Form({getSimulationConfig, getSimulationResult}) {
 			body: JSON.stringify({ houseId: houseId, backgroundSetId: backgroundSet, numberOfCars: cars})
 		};
 		fetch('http://127.0.0.1:8000/simulationconfig/', requestOptions)
-				.then(response => response.json())
-				.then(data => setResponse(data));
+			.then(response => response.json())
+			.then(data => setResponse(data));
 		event.preventDefault()
-		getSimulationConfig()		
+		getSimulationConfig()
 	}
 
-	const handleRunSimulation = (event) => {
+	const handlRunSimulation = (event) =>{
 		getSimulationResult()
 	}
-	
+	 
 		return (
 			<><form onSubmit={handleSubmit}>
 				<div>
-					<label>Select a BackgroundSet:</label>
+					<label>Select the BackgroundSet: </label>
 					<select value={backgroundSet} onChange={handleBackgroundSetChange}>
-					{ loadedBackgroundSets && backgroundSets.map((background) => <option value={background.backgroundSetId}>{background.backgroundSetName}</option>)}
+						{ loadedBackgroundSets &&
+						backgroundSets.map((background) => <option value={background.backgroundSetId}>{background.backgroundSetName}</option>)}
 					</select>
 				</div>
 				<br />
 				<div>
-					<label>Enter the Number of Cars</label>
-					<input 
-							type="text" 
-							value={cars} 
-							onChange={handleNumberOfCarsChange} />
+					<label>Enter the Number of Cars: </label>
+					<input
+						type="text"
+						value={cars}
+						onChange={handleNumberOfCarsChange} />
 					<br />
-					<label>Enter the House Id</label>
-					<input 
-							type="text" 
-							value={houseId} 
-							onChange={handleHouseIdChange} />
+					<label>Enter the House Id: </label>
+					<input
+						type="text"
+						value={houseId}
+						onChange={handleHouseIdChange} />	
 				</div>
 				<p></p>
-				<button>Submit this configuration</button>
+				<button type="submit">Submit this Configuration</button>
 
 				<p></p>
-				
+
 			</form>
 
-			<div> onClick={handlRunSimulation}>
-			<label>Run Simulation Configuration</label>
-			<input value="Run Simulation" type="submit" />
+			<div onClick={handlRunSimulation}>
+				<label>Run Simulation Configuration </label>
+				<input value="Run Simulation" type="submit" />
 			</div>
 			{JSON.stringify(response, null, 2)}
 			</>
@@ -87,9 +89,3 @@ function Form({getSimulationConfig, getSimulationResult}) {
 }
 
 export default Form;
-
-		)
-
-}
-
-
