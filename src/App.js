@@ -29,6 +29,30 @@ function App() {
                         });
   }
 
+  const getSimulationResult = () => {
+                setLoading(true);
+  }  
+    const requestOptions = {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json'},
+                        body: JSON.stringify(simulationConfig.results)
+                };
+
+                  const apiUrl = `http://127.0.0.1:8000/simulationresult/`;
+                  fetch(apiUrl, requestOptions)
+                  .then((data) => data.json())
+                  .then((simulationResult) => {
+      setLoading(false)
+      console.log("result")
+      console.log(simulationResult)
+      setSimulationResult(simulationResult)
+                  })
+      .catch((error) => {
+      });;
+  }
   
-  
+    return (
+      <div className
+    )
+
 export default App;
