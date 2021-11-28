@@ -19,7 +19,31 @@ function Form({getSimulationConfig, getSimulationResult}) {
 		}
 	});
 
-	const handleBackgroundSetChange
+	const handleBackgroundSetChange = (event) => {
+		setBackgroundSet(event.target.value);
+	}
+
+	const handleNumberOfCarsChange = (event) => {
+		setCars(event.target.value);
+	}
+
+	const handleHouseIdChange = (event) => {
+		setHouseId(event.target.value);
+	}
+
+	const handleSubmit = (event) => {
+		const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ houseId: houseId, backgroundSetId: backgroundSet, numberOfCars: cars})
+		};
+		fetch('http://127.0.0.1:8000/simulationconfig/', requestOptions)
+				.then(response => response.json())
+				.then(data => setResponse(data));
+		event.preventDefault()
+		getSimulationConfig()		
+	}
+
 }
 
 
