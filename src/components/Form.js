@@ -8,31 +8,23 @@ function Form({getSimulationConfig, getSimulationResult}) {
 	const [ houseId, setHouseId ] = usetState()
 	const [ response, setResponse] = useState()
 
-	useEffect(() => {
+	useEffect(() => {useEffect(() => {
+		if (!loadedBackgroundSets){
+			fetch('http://127.0.0.1:8000/backgroundsets/')
+			.then(data => {
+				setBackgroundSets(data.results)
+				setLoadedBackgroundSets(true)
+				setBackgroundSet(data.result[0].backgroundSetId)
+			});
+		}
+	});
 
-//	const handleNumberOfCarsChange = (event) => {
-	// 	setCars(event.target.value);
-	// }
+	const handleBackgroundSetChange
+}
 
-//	const handleSubmit = (event) => {
-	// 	alert(`${backgroundSet} ${cars}`)
-	// 	const requestOptions = {
-	// 		method: 'POST',
-	// 		headers: { 'Content-Type': 'application/json' },
-	// 		body: JSON.stringify({ houseId: 55, backgroundSetId: 1, numberOfCars: cars})
-	// 	};
-	// 	fetch('http://127.0.0.1:8000/simulationconfig/', requestOptions)
-	// 		.then(response => response.json())
-	// 		.then(data => setResponse(data));
-	// 	event.preventDefault()
-	// 	getSimulationConfig()
-	// }
 
-	// const handlRunSimulation = (event) =>{
-	// 	alert('run')
-	// 	getSimulationResult()
-	// }
 
+//////////////////////
 		return (
 			<><form onSubmit={handleSubmit}>
 				<div>
