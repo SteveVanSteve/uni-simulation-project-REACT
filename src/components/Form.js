@@ -44,39 +44,42 @@ function Form({getSimulationConfig, getSimulationResult}) {
 		getSimulationConfig()		
 	}
 
-}
-
-
-
-//////////////////////
+	const handleRunSimulation = (event) => {
+		getSimulationResult()
+	}
+	
 		return (
 			<><form onSubmit={handleSubmit}>
 				<div>
-					<label>Select the BackgroundSet: </label>
+					<label>Select a BackgroundSet:</label>
 					<select value={backgroundSet} onChange={handleBackgroundSetChange}>
-						<option value="No Electric Heating">No Electric Heating</option>
-						<option value="Additional Electric Heating">Additional Electric Heating</option>
-						<option value="Primary Electric Heating">Primary Electric Heating</option>
+					{ loadedBackgroundSets && backgroundSets.map((background) => <option value={background.backgroundSetId}>{background.backgroundSetName}</option>)}
 					</select>
 				</div>
 				<br />
 				<div>
-					<label>Enter the Number of Cars: </label>
-					<input
-						type="text"
-						value={cars}
-						onChange={handleNumberOfCarsChange} />
+					<label>Enter the Number of Cars</label>
+					<input 
+							type="text" 
+							value={cars} 
+							onChange={handleNumberOfCarsChange} />
+					<br />
+					<label>Enter the House Id</label>
+					<input 
+							type="text" 
+							value={houseId} 
+							onChange={handleHouseIdChange} />
 				</div>
 				<p></p>
-				<button type="submit">Add Configuration</button>
+				<button>Submit this configuration</button>
 
 				<p></p>
-
+				
 			</form>
 
-			<div onClick={handlRunSimulation}>
-				<label>Run Simulation Configuration </label>
-				<input value="Run Simulation" type="submit" />
+			<div> onClick={handlRunSimulation}>
+			<label>Run Simulation Configuration</label>
+			<input value="Run Simulation" type="submit" />
 			</div>
 			{JSON.stringify(response, null, 2)}
 			</>
@@ -84,3 +87,9 @@ function Form({getSimulationConfig, getSimulationResult}) {
 }
 
 export default Form;
+
+		)
+
+}
+
+
