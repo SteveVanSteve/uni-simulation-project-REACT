@@ -7,7 +7,7 @@ import SimulationChart from './components/SimulationChart';
 function App() {
 
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] =useState(false)
   const[simulationConfig, setSimulationConfig] = useState()
   const [simulationResult, setSimulationResult] = useState()
 
@@ -19,57 +19,55 @@ function App() {
 
 
   const getSimulationConfig = () => {
-                setLoading(true);
-                const apiUrl = `http://127.0.0.1:8000/simulationconfig`;
-                fetch(apiUrl)
-                        .then((data) => data.json())
-                        .then((simulationConfig) => {
+		setLoading(true);
+		const apiUrl = `http://127.0.0.1:8000/simulationconfig`;
+		fetch(apiUrl)
+			.then((data) => data.json())
+			.then((simulationConfig) => {
         setLoading(false)
         setSimulationConfig(simulationConfig)
-                        });
+			});
   }
 
   const getSimulationResult = () => {
-                setLoading(true);
-  }  
+		setLoading(true);
     const requestOptions = {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json'},
-                        body: JSON.stringify(simulationConfig.results)
-                };
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(simulationConfig.results)
+		};
 
-                  const apiUrl = `http://127.0.0.1:8000/simulationresult/`;
-                  fetch(apiUrl, requestOptions)
-                  .then((data) => data.json())
-                  .then((simulationResult) => {
-      setLoading(false)
-      console.log("result")
-      console.log(simulationResult)
-      setSimulationResult(simulationResult)
-                  })
+		const apiUrl = `http://127.0.0.1:8000/simulationresult/`;
+		fetch(apiUrl, requestOptions)
+			.then((data) => data.json())
+			.then((simulationResult) => {
+        setLoading(false)
+        console.log("result")
+        console.log(simulationResult)
+        setSimulationResult(simulationResult)
+			})
       .catch((error) => {
+        console.log(error)
       });;
   }
-  
 
-  return (
-    
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to Grid-Scout!
-        </p>
-        </header>
-        <p>
-          <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} />
-        </p>
-        {JSON.stringify(simulationConfig, null, 2)}
-        <p>
-         <SimulationChart simulationResult={simulationResult} />
-        </p>
-    </div>
-  );
-  }
+   return (
+     <div className="App">
+       <header className="App-header">
+         <img src={logo} className="App-logo" alt="logo" />
+         <p>
+           Welcome to Grid-Scout!
+         </p>
+         </header>
+         <p>
+           <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} />
+         </p>
+         {JSON.stringify(simulationConfig, null, 2)}
+         <p>
+          <SimulationChart simulationResult={simulationResult} />
+         </p>
+     </div>
+   );
+ }
 
 export default App;
