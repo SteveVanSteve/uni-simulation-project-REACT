@@ -8,15 +8,14 @@ function SimulationChart({simulationResult}) {
 
   const emptyData = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  
 
-  const getLabel = () =>{
+  const getLabel = () => {
     if (simulationResult){
       return simulationResult.data.map(item => item.time)
     }
      return emptyLabels 
-    
   }
 
-  const getData = () =>{
+  const getData = () => {
     if (simulationResult){
       return simulationResult.data.map(item => item.power)
     }
