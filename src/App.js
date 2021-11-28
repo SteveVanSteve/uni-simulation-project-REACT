@@ -55,9 +55,10 @@ function App() {
      <div className="App">
        <header className="App-header">
          <img src={logo} className="App-logo" alt="logo" />
-         <p>
+         <h1>
            Welcome to Grid-Scout!
-         </p>
+         </h1>
+         <p>Helping to simulate how to power the future</p>
          </header>
          <p>
            <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} />
