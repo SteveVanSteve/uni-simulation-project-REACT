@@ -7,7 +7,7 @@ import SimulationChart from './components/SimulationChart';
 function App() {
 
 
-  const [loading, setLoading] =useState(false)
+  const [loading, setLoading] = useState(false)
   const[simulationConfig, setSimulationConfig] = useState()
   const [simulationResult, setSimulationResult] = useState()
 
