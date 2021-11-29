@@ -54,9 +54,25 @@ function App() {
 
 // input background power data so it adds onto car charge
 
+useEffect(() => {
+  if (!simulationBackgroundPower){
+  getSimulationBackgroundPower()}
+});
 
 
-   return (
+const getSimulationBackgroundPower = () => {
+  setLoading(true);
+  const apiUrl = `http://127.0.0.1:8000/backgroundpower/`;
+  fetch(apiUrl)
+    .then((data) => data.json())
+    .then((simulationBackgroundPower) => {
+      setLoading(false)
+      setSimulationConfig(simulationBackgroundPower)
+    });
+}
+
+
+return (
      <div className="App">
        <header className="App-header">
          <img src={logo} className="App-logo" alt="logo" />
