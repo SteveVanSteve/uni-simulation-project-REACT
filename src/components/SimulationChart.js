@@ -9,22 +9,21 @@ function SimulationChart({simulationResult}) {
   const emptyData = []  
 
   const getLabel = () => {
-    if (simulationResult){
+    if (simulationResult) {
       return simulationResult.data.map(item => item.time)
     }
      return emptyLabels 
   }
 
   const getData = () => {
-    if (simulationResult){
+    if (simulationResult) {
       return simulationResult.data.map(item => item.power)
     }
      return emptyData 
-    
   }
   
   const data = {
-    labels: getLabel(), //simulationResult.map(item => item.time),
+    labels: getLabel(),
     datasets: [{
       label: 'Total Power from house loaded onto Low Voltage Grid',
       data: getData(),
