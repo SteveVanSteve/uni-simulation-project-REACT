@@ -10,7 +10,6 @@ function App() {
   const [loading, setLoading] =useState(false)
   const[simulationConfig, setSimulationConfig] = useState()
   const [simulationResult, setSimulationResult] = useState()
-  const [simulationBackgroundPower, setSimulationBackgroundPower] = useState()
 
 
   useEffect(() => {
@@ -52,25 +51,6 @@ function App() {
       });;
   }
 
-// input background power data so it adds onto car charge
-
-useEffect(() => {
-  if (!simulationBackgroundPower){
-  getSimulationBackgroundPower()}
-});
-
-
-const getSimulationBackgroundPower = () => {
-  setLoading(true);
-  const apiUrl = `http://127.0.0.1:8000/backgroundpower/`;
-  fetch(apiUrl)
-    .then((data) => data.json())
-    .then((simulationBackgroundPower) => {
-      setLoading(false)
-      setSimulationConfig(simulationBackgroundPower)
-    });
-}
-
 
 return (
      <div className="App">
@@ -79,12 +59,11 @@ return (
          <h1>
            Welcome to Grid-Scout!
          </h1>
-         <p>Helping to simulate how to power the future</p>
+         <p>Helping to simulate we will power our future</p>
          </header>
          <p>
            <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} getSimulationBackgroundPower />
          </p>
-         {JSON.stringify(simulationConfig, null, 2)}
          <p>
           <SimulationChart simulationResult={simulationResult} />
          </p>
