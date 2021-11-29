@@ -59,10 +59,10 @@ return (
          <h1>
            Welcome to Grid-Scout!
          </h1>
-         <p>Helping to simulate we will power our future</p>
+         <p>Helping to simulate clean electricity into our future</p>
          </header>
          <p>
-           <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} getSimulationBackgroundPower />
+           <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} />
          </p>
          <p>
           <SimulationChart simulationResult={simulationResult} />
