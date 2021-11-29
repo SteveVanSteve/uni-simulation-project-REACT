@@ -10,6 +10,7 @@ function App() {
   const [loading, setLoading] =useState(false)
   const[simulationConfig, setSimulationConfig] = useState()
   const [simulationResult, setSimulationResult] = useState()
+  const [simulationBackgroundPower, setSimulationBackgroundPower] = useState()
 
 
   useEffect(() => {
@@ -51,6 +52,10 @@ function App() {
       });;
   }
 
+// input background power data so it adds onto car charge
+
+
+
    return (
      <div className="App">
        <header className="App-header">
@@ -61,7 +66,7 @@ function App() {
          <p>Helping to simulate how to power the future</p>
          </header>
          <p>
-           <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} />
+           <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} getSimulationBackgroundPower />
          </p>
          {JSON.stringify(simulationConfig, null, 2)}
          <p>
