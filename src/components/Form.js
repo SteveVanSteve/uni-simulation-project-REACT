@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 
 function Form({getSimulationConfig, getSimulationResult}) {
 	const [ backgroundSets, setBackgroundSets ] = useState()
-	const [ loadedBackgroundSets, setLoadedBacgkroundSets ] = useState(false)
+	const [ loadedBackgroundSets, setLoadedBackgroundSets ] = useState(false)
 	const [ backgroundSet, setBackgroundSet ] = useState()
 	const [ cars, setCars ] = useState()
 	const [ houseId, setHouseId ] = useState()
@@ -14,7 +14,7 @@ function Form({getSimulationConfig, getSimulationResult}) {
 			.then(response => response.json())
 			.then(data => {
 				setBackgroundSets(data.results)
-				setLoadedBacgkroundSets(true)
+				setLoadedBackgroundSets(true)
 				setBackgroundSet(data.results[0].backgroundSetId)
 			});
 		}
@@ -48,8 +48,8 @@ function Form({getSimulationConfig, getSimulationResult}) {
 	const handlRunSimulation = (event) =>{
 		getSimulationResult()
 	}
-	 
-		return (
+
+	return (
 			<><form onSubmit={handleSubmit}>
 				<div>
 					<label>Select the BackgroundSet: </label>
@@ -80,8 +80,9 @@ function Form({getSimulationConfig, getSimulationResult}) {
 			</form>
 
 			<div onClick={handlRunSimulation}>
-				<label>Run Simulation Configuration </label>
-				<input value="Run Simulation" type="submit" />
+				<label>See the effect of this configuration displayed in the graph below </label>
+				<p></p>
+				<input value="Show Results" type="submit" />
 			</div>
 			{JSON.stringify(response, null, 2)}
 			</>

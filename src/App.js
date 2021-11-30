@@ -5,18 +5,14 @@ import Form from './components/Form';
 import SimulationChart from './components/SimulationChart';
 
 function App() {
-
-
   const [loading, setLoading] =useState(false)
   const[simulationConfig, setSimulationConfig] = useState()
   const [simulationResult, setSimulationResult] = useState()
-
 
   useEffect(() => {
     if (!simulationConfig){
     getSimulationConfig()}
 	});
-
 
   const getSimulationConfig = () => {
 		setLoading(true);
@@ -59,7 +55,7 @@ return (
          <h1>
            Welcome to Grid-Scout!
          </h1>
-         <p>Helping to simulate clean electricity into our future</p>
+         <p>Helping to simulate how we can charge our future</p>
          </header>
          <p>
            <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} />
