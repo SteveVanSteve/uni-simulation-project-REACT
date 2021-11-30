@@ -7,39 +7,61 @@ function SimulationChart({simulationResult}) {
   const labels = [0.00, 1.00, 2.00, 3.00, 4.00, 5.00, 6.00, 7.00, 8.00, 9.00, 10.00, 11.00,
     12.00, 13.00, 14.00, 15.00, 16.00, 17.00, 18.00, 19.00, 20.00, 21.00, 22.00, 23.00]
 
-  const emptyData = []
-  
-  const [resultDataSets, setResultDataSets] = useState([])  
+  const emptyData = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  
+
+  const [resultDataSets, setResultDataSets] = useState([])
 
   useEffect(() => {
     if (simulationResult) {
-      setResultDataSets(currentData => [] )
+      setResultDataSets(currentData => [])
       for (var house in simulationResult.data) {
         addHouseToGraph(simulationResult.data[house])
       }
     }
   }, simulationResult)
 
-const addHouseToGraph = (house) => {
-  const dataSet = {
-    label: 'Total Power of house: '+house.houseId +' - ' +house.numberOfCars +' car(s) loaded onto background set '+ house.backgroundSetId,
-    data: getData(house),
-    borderColor: 'rgb(75, 192, 192)',
+  const addHouseToGraph = (house) => {
+    const dataSet = {
+      label: 'Total Power of house: '+house.houseId +' - ' +house.numberOfCars +' car(s) loaded onto background set '+ house.backgroundSetId,
+      data: getData(house),
+      borderColor: 'rgb(75, 192, 192)',
       tension: 0.5,
       options: {
         scales: {
-          y: {
-              ticks: {
-                  callback: function(value, index, values) {
-                      return '$' + value;
-                  }
+          yAxes: {
+            title: {
+              display: true,
+              text: 'Current (Amps)',
+              font: {
+                size: 15
               }
+            },
+            ticks: {
+              precision: 0
+            }
+          },
+          xAxes: {
+            title: {
+              display: true,
+              text: 'Time (24 hours)',
+              font: {
+                size: 15
+              }
+            },
+            ticks: {
+              precision: 0
+            }
           }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false,
+        }
       }
-  }
-}
+    }
 
-setResultDataSets(currentData => [...currentData, dataSet])
+    setResultDataSets(currentData => [...currentData, dataSet])
 
   }
 
@@ -52,7 +74,7 @@ setResultDataSets(currentData => [...currentData, dataSet])
   }
   
   const data = {
-    labels: labels, //simulationResult.map(item => item.time),
+    labels: labels,
     datasets: resultDataSets
     
   };
