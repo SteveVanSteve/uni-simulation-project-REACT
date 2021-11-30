@@ -22,7 +22,7 @@ function SimulationChart({simulationResult}) {
 
   const addHouseToGraph = (house) => {
     const dataSet = {
-      label: 'Total Power of house: '+house.houseId +' - ' +house.numberOfCars +' car(s) loaded onto background set '+ house.backgroundSetId,
+      label: 'Background Current of house: '+house.houseId +' - ' +house.numberOfCars +' car(s) loaded onto background set '+ house.backgroundSetId,
       data: getData(house),
       borderColor: 'rgb(75, 192, 192)',
       tension: 0.5,
