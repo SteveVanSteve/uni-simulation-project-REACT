@@ -80,9 +80,10 @@ function Form({getSimulationConfig, getSimulationResult}) {
 			</form>
 
 			<div onClick={handlRunSimulation}>
-				<label>See the effect of this configuration displayed in the graph below </label>
+				<label>Click 'Show Results' to see the effect of this configuration displayed in the graph below </label>
 				<p></p>
 				<input value="Show Results" type="submit" />
+				<p></p>
 			</div>
 			{JSON.stringify(response, null, 2)}
 			</>
