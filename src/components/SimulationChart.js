@@ -1,68 +1,59 @@
+import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
 
 function SimulationChart({simulationResult}) {
 
-  const emptyLabels = [0.00, 1.00, 2.00, 3.00, 4.00, 5.00, 6.00, 7.00, 8.00, 9.00, 10.00, 11.00,
+  const labels = [0.00, 1.00, 2.00, 3.00, 4.00, 5.00, 6.00, 7.00, 8.00, 9.00, 10.00, 11.00,
     12.00, 13.00, 14.00, 15.00, 16.00, 17.00, 18.00, 19.00, 20.00, 21.00, 22.00, 23.00]
 
-  const emptyData = []  
+  const emptyData = []
+  
+  const [resultDataSets, setResultDataSets] = useState([])  
 
-  const getLabel = () => {
+  useEffect(() => {
     if (simulationResult) {
-      return simulationResult.data.map(item => item.time)
+      setResultDataSets(currentData => [] )
+      for (var house in simulationResult.data) {
+        addHouseToGraph(simulationResult.data[house])
+      }
     }
-     return emptyLabels 
+  }, simulationResult)
+
+const addHouseToGraph = (house) => {
+  const dataSet = {
+    label: 'Total Power of house: '+house.houseId +' - ' +house.numberOfCars +' car(s) loaded onto background set '+ house.backgroundSetId,
+    data: getData(house),
+    borderColor: 'rgb(75, 192, 192)',
+      tension: 0.5,
+      options: {
+        scales: {
+          y: {
+              ticks: {
+                  callback: function(value, index, values) {
+                      return '$' + value;
+                  }
+              }
+          }
+      }
+  }
+}
+
+setResultDataSets(currentData => [...currentData, dataSet])
+
   }
 
-  const getData = () => {
-    if (simulationResult) {
-      return simulationResult.data.map(item => item.power)
+  const getData = (house) =>{
+    if (house){
+      return house.simulation.map(item => item.power)
     }
      return emptyData 
+    
   }
   
   const data = {
-    labels: getLabel(),
-    datasets: [{
-      label: 'Total Power from house loaded onto Low Voltage Grid',
-      data: getData(),
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.4,
-      options: {
-        scales: {
-          yAxes: {
-            title: {
-              display: true,
-              text: "Power",
-              font: {
-                size: 15
-              }
-            },
-            ticks: {
-              precision: 0
-            }
-          },
-          xAxes: {
-            title: {
-              display: true,
-              text: "Time (24 hours)",
-              font: {
-                size: 15
-              }
-            },
-            ticks: {
-              precision: 0
-            }
-          }
-        }
-      },
-      plugins: {
-        legend: {
-          display: false,
-        }
-      }
-    }],
+    labels: labels, //simulationResult.map(item => item.time),
+    datasets: resultDataSets
     
   };
   
