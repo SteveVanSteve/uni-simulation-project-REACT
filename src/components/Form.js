@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Form({getSimulationConfig, getSimulationResult}) {
 	const [ backgroundSets, setBackgroundSets ] = useState()
@@ -42,10 +42,11 @@ function Form({getSimulationConfig, getSimulationResult}) {
 			.then(response => response.json())
 			.then(data => setResponse(data));
 		event.preventDefault()
+		// Update list of simulation configs in app
 		getSimulationConfig()
 	}
 
-	const handlRunSimulation = (event) =>{
+	const handleRunSimulation = (event) =>{
 		getSimulationResult()
 	}
 
@@ -73,13 +74,13 @@ function Form({getSimulationConfig, getSimulationResult}) {
 						onChange={handleHouseIdChange} />	
 				</div>
 				<p></p>
-				<button type="submit">Submit this Configuration</button>
+				<button type="submit">Submit and Add this Configuration</button>
 
 				<p></p>
 
 			</form>
 
-			<div onClick={handlRunSimulation}>
+			<div onClick={handleRunSimulation}>
 				<label>Click 'Show Results' to see the effect of this configuration displayed in the graph below </label>
 				<p></p>
 				<input value="Show Results" type="submit" />

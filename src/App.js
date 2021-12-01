@@ -61,8 +61,12 @@ return (
            <Form getSimulationConfig={getSimulationConfig} getSimulationResult={getSimulationResult} />
          </p>
          <p>
+           {loading ? 'Loading results...' : 'Not loading results'}
+          </p> 
+         <p>
           <SimulationChart simulationResult={simulationResult} />
          </p>
+         <p>Y axis = Current (Amps) || X axis = Time of day (24 hours)</p>
      </div>
    );
  }

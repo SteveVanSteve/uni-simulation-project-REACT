@@ -60,7 +60,7 @@ function SimulationChart({simulationResult}) {
         }
       }
     }
-
+    // Add new dataset to list of datasets
     setResultDataSets(currentData => [...currentData, dataSet])
 
   }
