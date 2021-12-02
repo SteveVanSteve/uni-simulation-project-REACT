@@ -66,7 +66,8 @@ return (
          <p>
           <SimulationChart simulationResult={simulationResult} />
          </p>
-         <p>Y axis = Current (Amps) || X axis = Time of day (24 hours)</p>
+         <p><b>Y axis = Current (Amps)</b> || <b>X axis = Time of day (24 hours)</b></p>
+         <p></p>
      </div>
    );
  }
